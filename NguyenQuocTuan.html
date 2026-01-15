@@ -1,0 +1,139 @@
+<!--
+    Sinh viên: Nguyễn Quốc Tuấn
+    Mã số sinh viên: 22700221
+    Sinh viên Đổi tên tập tin và nội dung thẻ title thành hovatensinhvien và thực hiện đầy đủ các yêu cầu bên dưới.
+!-->
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>NguyenQuocTuan</title>
+
+    <style>
+        /* YÊU CẦU:
+        - Căn giữa nội dung
+        - Đổi màu tiêu đề
+        - Tạo khung cho kết quả
+        */
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+
+        }
+        h2 {
+            color: #2E8B57;
+        }
+        #result, #output, #array {
+            border: 2px solid black;
+            padding: 15px;
+            margin: 10px auto;
+            width: 30%;
+            box-shadow: 2px 2px 12px #aaa;
+        }
+    </style>
+</head>
+<body>
+
+<h2>KIỂM TRA SỐ CHẴN LẺ & TÍNH TOÁN</h2>
+
+<div id="result"></div>
+
+<script>
+    /*
+    YÊU CẦU JAVASCRIPT:
+
+    1. Viết hàm isEven(n) để kiểm tra chẵn lẻ, //SỬ DỤNG FUNCTION DECLARATION
+    2. Viết hàm calculate(n) trả về: //SỬ DỤNG ARROW FUNCTION
+        - Bình phương
+        - Gấp đôi
+    3. Dùng prompt() cho người dùng nhập số //ÉP KIỂU VÀ KIỂM TRA DỮ LIỆU NHẬP
+    4. Hiển thị kết quả ra div #result
+    */
+    function isEven(n) {
+        if (n % 2 === 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    const calculate = (n) => {
+        return {
+            square: n * n,
+            double: n * 2
+        };
+    };
+    let userInput = prompt("Vui lòng nhập một số:");
+    let number = parseInt(userInput);
+    const resultDiv = document.getElementById("result");
+    if (isNaN(number)) {
+        resultDiv.innerHTML = "Vui lòng nhập một số hợp lệ.";
+    } else {
+        const evenOdd = isEven(number) ? "chẵn" : "lẻ";
+        const calculations = calculate(number);
+        resultDiv.innerHTML = `Số bạn nhập là <strong>${evenOdd}</strong>.<br>
+                               Bình phương: <strong>${calculations.square}</strong>.<br>
+                               Gấp đôi: <strong>${calculations.double}</strong>.`;
+    }
+</script>
+
+<h2>PHÂN TÍCH MẢNG SỐ</h2>
+
+<p id="array"></p>
+<ul id="output"></ul>
+
+<script>
+/*
+YÊU CẦU JAVASCRIPT:
+
+1. Tạo mảng numbers gồm ít nhất 5 số
+2. Viết hàm: // KHÔNG dùng Array.sort() hay hàm có sẵn như Math.max(...arr)
+    - sumArray(arr) //SỬ DỤNG FUNCTION DECLARATION
+    - findMax(arr) //SỬ DỤNG FUNCTION DECLARATION
+    - filterEven(arr) //SỬ DỤNG ARROW FUNCTION 
+3. Hiển thị:
+    - Mảng ban đầu
+    - Tổng các phần tử
+    - Số lớn nhất
+    - Danh sách số chẵn
+*/
+const numbers = [12, 7, 5, 20, 33, 8];
+document.getElementById("array").innerHTML = `Mảng ban đầu: [${numbers.join(", ")}]`;
+function sumArray(arr) {
+    let sum = 0;
+    for (let i = 0; i < arr.length; i++) {
+        sum += arr[i];
+    }
+    return sum;
+}
+function findMax(arr) {
+    let max = arr[0];
+    for (let i = 1; i < arr.length; i++) {
+        if (arr[i] > max) {
+            max = arr[i];
+        }
+    }
+    return max;
+}
+const filterEven = (arr) => {
+    let evenNumbers = [];
+    for (let i = 0; i < arr.length; i++) {
+        if (arr[i] % 2 === 0) {
+            evenNumbers.push(arr[i]);
+        }
+    }
+    return evenNumbers;
+};
+const sum = sumArray(numbers);
+const max = findMax(numbers);
+const evenNumbers = filterEven(numbers);
+const output = document.getElementById("output");
+output.innerHTML = `
+    <div>Tổng các phần tử: <strong>${sum}</strong></div>
+    <div>Số lớn nhất: <strong>${max}</strong></div>
+    <div>Số chẵn: <strong>[${evenNumbers.join(", ")}]</strong></div>
+`;
+</script>
+
+
+</body>
+</html>
